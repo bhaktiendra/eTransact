@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PandawaTransactionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Nama" Type="nvarchar(max)" />
+          <Property Name="Deskripsi" Type="nvarchar(max)" />
+          <Property Name="Metode" Type="nvarchar(max)" />
+          <Property Name="Kategori" Type="nvarchar(max)" />
+          <Property Name="Harga" Type="float" />
+          <Property Name="Diskon" Type="float" />
+        </EntityType>
+        <EntityType Name="Metode">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Nama" Type="nvarchar(max)" />
+          <Property Name="Harga" Type="float" />
+        </EntityType>
+        <EntityType Name="Transaksi">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Pelanggan" Type="nvarchar(max)" />
+          <Property Name="Tanggal" Type="datetime" />
+          <Property Name="MenuPelanggan" Type="varchar(max)" />
+          <Property Name="Diskon" Type="float" />
+          <Property Name="TotalHarga" Type="float" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Username" Type="nvarchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="Access" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityContainer Name="PandawaTransactionModelStoreContainer">
+          <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Metode" EntityType="Self.Metode" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transaksi" EntityType="Self.Transaksi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PandawaTransactionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Nama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Deskripsi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Metode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Kategori" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Harga" Type="Double" />
+          <Property Name="Diskon" Type="Double" />
+        </EntityType>
+        <EntityType Name="Metode">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Nama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Harga" Type="Double" />
+        </EntityType>
+        <EntityType Name="Transaksi">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Pelanggan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Tanggal" Type="DateTime" Precision="3" />
+          <Property Name="MenuPelanggan" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Diskon" Type="Double" />
+          <Property Name="TotalHarga" Type="Double" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Access" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="PandawaTransactionEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Menus" EntityType="Self.Menu" />
+          <EntitySet Name="Metodes" EntityType="Self.Metode" />
+          <EntitySet Name="Transaksis" EntityType="Self.Transaksi" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PandawaTransactionModelStoreContainer" CdmEntityContainer="PandawaTransactionEntities">
+          <EntitySetMapping Name="Menus">
+            <EntityTypeMapping TypeName="PandawaTransactionModel.Menu">
+              <MappingFragment StoreEntitySet="Menu">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nama" ColumnName="Nama" />
+                <ScalarProperty Name="Deskripsi" ColumnName="Deskripsi" />
+                <ScalarProperty Name="Metode" ColumnName="Metode" />
+                <ScalarProperty Name="Kategori" ColumnName="Kategori" />
+                <ScalarProperty Name="Harga" ColumnName="Harga" />
+                <ScalarProperty Name="Diskon" ColumnName="Diskon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Metodes">
+            <EntityTypeMapping TypeName="PandawaTransactionModel.Metode">
+              <MappingFragment StoreEntitySet="Metode">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nama" ColumnName="Nama" />
+                <ScalarProperty Name="Harga" ColumnName="Harga" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transaksis">
+            <EntityTypeMapping TypeName="PandawaTransactionModel.Transaksi">
+              <MappingFragment StoreEntitySet="Transaksi">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Pelanggan" ColumnName="Pelanggan" />
+                <ScalarProperty Name="Tanggal" ColumnName="Tanggal" />
+                <ScalarProperty Name="MenuPelanggan" ColumnName="MenuPelanggan" />
+                <ScalarProperty Name="Diskon" ColumnName="Diskon" />
+                <ScalarProperty Name="TotalHarga" ColumnName="TotalHarga" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="PandawaTransactionModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Access" ColumnName="Access" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
