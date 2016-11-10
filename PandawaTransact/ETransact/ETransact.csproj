@@ -58,7 +58,8 @@
       <DependentUpon>TransactionModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TransactController.cs" />
+    <Compile Include="Controller\TransactController.cs" />
+    <Compile Include="Controller\UserController.cs" />
     <Compile Include="TransactionModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

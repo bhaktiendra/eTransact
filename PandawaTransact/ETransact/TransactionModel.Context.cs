@@ -13,10 +13,10 @@ namespace ETransact
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class PandawaTransactionEntities : DbContext
+    public partial class TransactionEntities : DbContext
     {
-        public PandawaTransactionEntities()
-            : base("name=PandawaTransactionEntities")
+        public TransactionEntities()
+            : base("name=TransactionEntities")
         {
         }
     

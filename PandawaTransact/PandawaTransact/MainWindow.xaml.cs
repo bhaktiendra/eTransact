@@ -12,7 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ETransact;
+using ETransact.Controller;
+using Menu = ETransact.Menu;
 
 namespace PandawaTransact
 {
@@ -21,21 +22,21 @@ namespace PandawaTransact
     /// </summary>
     public partial class MainWindow : Window
     {
-        TransactController controller = new TransactController();
+        private TransactController controller;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            
+            this.controller = new TransactController();
         }
 
+        // Logic
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ETransact.Menu menu = new ETransact.Menu();
+            Menu menu = new Menu();
 
-            menu.Id = 1;
-            menu.Nama = "Test";
+            menu.Nama = "TestEdit";
             menu.Harga = 2000;
             menu.Diskon = 50;
             menu.Deskripsi = "test desc";
