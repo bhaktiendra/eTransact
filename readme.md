@@ -1,4 +1,4 @@
-<h1>Introduction<h1>
+<h1>Introduction</h1>
 
 <p>ETransact is a simple transaction desktop applications that utilize transaction data to provide usefull informations. ETransact able to do check-out function, manage stock data or menu, and visualize sales data for improvement</p>
 
