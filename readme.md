@@ -10,11 +10,11 @@
 
 <h3>Requirements</h3>
 <p>
-<li>
-<ul>Miscrosoft Visual Studio Community 2015 (or better)</ul>
-<ul>SQL Express (or better)</ul>
-<ul>Average programming skill (or better)</ul>
-</li>
+<ul>
+<li>Miscrosoft Visual Studio Community 2015 (or better)</li>
+<li>SQL Express (or better)</li>
+<li>Average programming skill (or better)</li>
+</ul>
 </p>
 
 <h3>Database Connection</h3>
