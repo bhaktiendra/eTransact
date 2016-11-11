@@ -1,31 +1,21 @@
-Synopsis
+<h1>Introduction<h1>
 
-At the top of the file there should be a short introduction and/ or overview that explains what the project is. This description should match descriptions added for package managers (Gemspec, package.json, etc.)
+<p>ETransact is a simple transaction desktop applications that utilize transaction data to provide usefull informations. ETransact able to do check-out function, manage stock data or menu, and visualize sales data for improvement</p>
 
-Code Example
+<h1>Motivation</h1>
 
-Show what the library does as concisely as possible, developers should be able to figure out how your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
+<p>ETransact developed not only as check-out application. We often see that sales data are not managed properly and small business often take it for granted. Using ETransact, all sales data are recorded while making swift and fast check-out process.</p>
 
-Motivation
+<h1>Installation</h1>
 
-A short description of the motivation behind the creation and maintenance of the project. This should explain why the project exists.
+<h3>Requirements</h3>
+<p>
+<li>
+<ul>Miscrosoft Visual Studio Community 2015 (or better)</ul>
+<ul>SQL Express (or better)</ul>
+<ul>Average programming skill (or better)</ul>
+</p>
 
-Installation
+<h3>Database Connection</h3>
+<p>To modify database connection you need to create your own local database using query in Queries folder. Once you able to create the database and tables, please modify the App.config in each project folder to refer on your server.</p>
 
-Provide code examples and explanations of how to get the project.
-
-API Reference
-
-Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
-
-Tests
-
-Describe and show how to run the tests with code examples.
-
-Contributors
-
-Let people know how they can dive into the project, include important links to things like issue trackers, irc, twitter accounts if applicable.
-
-License
-
-A short snippet describing the license (MIT, Apache, etc.)
