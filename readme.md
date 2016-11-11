@@ -14,6 +14,7 @@
 <ul>Miscrosoft Visual Studio Community 2015 (or better)</ul>
 <ul>SQL Express (or better)</ul>
 <ul>Average programming skill (or better)</ul>
+</li>
 </p>
 
 <h3>Database Connection</h3>
