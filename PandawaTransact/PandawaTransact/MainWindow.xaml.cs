@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ETransact.Controller;
 using Menu = ETransact.Menu;
+using System.Data.Sql;
+using System.Data;
 
 namespace PandawaTransact
 {
@@ -23,12 +25,15 @@ namespace PandawaTransact
     public partial class MainWindow : Window
     {
         private TransactController controller;
+        private string ServerName;
 
-        public MainWindow()
+        public MainWindow(string serverName)
         {
             InitializeComponent();
 
-            this.controller = new TransactController();
+            // initialize the controller
+            this.ServerName = serverName;
+            this.controller = new TransactController(this.ServerName);
         }
 
         // Logic
