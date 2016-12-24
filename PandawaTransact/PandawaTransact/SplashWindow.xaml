@@ -5,15 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PandawaTransact"
         mc:Ignorable="d"
-        Title="SplashWindow" Height="300" Width="300">
+        Title="Pandawa Transaction - Pilih Database" Height="300" Width="400"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <StackPanel VerticalAlignment="Center">
-            <Label Content="Please select an active SQL Server" HorizontalAlignment="Center"/>
+            <Label Content="Silakan pilih database aktif" HorizontalAlignment="Center"/>
             <DockPanel Margin="10" HorizontalAlignment="Center">
                 <ComboBox AllowDrop="True" IsEditable="True" Width="150" Height="30" Margin="5"  Name="ServerList"/>
-                <Button Content="Refresh" Width="75" Height="30" Click="RefreshButton_Click" />
+                <Button Content="Scan Database" Width="100" Height="30" Click="RefreshButton_Click" />
             </DockPanel>
-            <Button Width="150" Height="30" Content="Select" Click="SelectButton_Click"/>
+            <Button Width="150" Height="30" Content="Pilih" Click="SelectButton_Click"/>
         </StackPanel>
     </Grid>
 </Window>

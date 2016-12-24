@@ -5,6 +5,14 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="TransactionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Kategori">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nama" Type="nvarchar(max)" />
+          <Property Name="Harga" Type="float" />
+        </EntityType>
         <EntityType Name="Menu">
           <Key>
             <PropertyRef Name="Id" />
@@ -32,7 +40,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Pelanggan" Type="nvarchar(max)" />
           <Property Name="Tanggal" Type="datetime" />
-          <Property Name="MenuPelanggan" Type="varchar(max)" />
+          <Property Name="MenuPelanggan" Type="nvarchar(max)" />
           <Property Name="Diskon" Type="float" />
           <Property Name="TotalHarga" Type="float" />
         </EntityType>
@@ -41,11 +49,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Username" Type="nvarchar(max)" />
+          <Property Name="Nama" Type="nvarchar(max)" />
           <Property Name="Password" Type="nvarchar(max)" />
           <Property Name="Access" Type="nvarchar(max)" />
         </EntityType>
         <EntityContainer Name="TransactionModelStoreContainer">
+          <EntitySet Name="Kategori" EntityType="Self.Kategori" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Metode" EntityType="Self.Metode" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Transaksi" EntityType="Self.Transaksi" Schema="dbo" store:Type="Tables" />
@@ -56,6 +65,14 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TransactionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Kategori">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Harga" Type="Double" />
+        </EntityType>
         <EntityType Name="Menu">
           <Key>
             <PropertyRef Name="Id" />
@@ -83,7 +100,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Pelanggan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Tanggal" Type="DateTime" Precision="3" />
-          <Property Name="MenuPelanggan" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="MenuPelanggan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Diskon" Type="Double" />
           <Property Name="TotalHarga" Type="Double" />
         </EntityType>
@@ -92,11 +109,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Nama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Access" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityContainer Name="TransactionEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Kategoris" EntityType="Self.Kategori" />
           <EntitySet Name="Menus" EntityType="Self.Menu" />
           <EntitySet Name="Metodes" EntityType="Self.Metode" />
           <EntitySet Name="Transaksis" EntityType="Self.Transaksi" />
@@ -107,7 +125,16 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="TransactionModelStoreContainer" CdmEntityContainer="TransactionEntities">
+        <EntityContainerMapping StorageEntityContainer="TransactionModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Kategoris">
+            <EntityTypeMapping TypeName="TransactionModel.Kategori">
+              <MappingFragment StoreEntitySet="Kategori">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nama" ColumnName="Nama" />
+                <ScalarProperty Name="Harga" ColumnName="Harga" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Menus">
             <EntityTypeMapping TypeName="TransactionModel.Menu">
               <MappingFragment StoreEntitySet="Menu">
@@ -146,7 +173,7 @@
             <EntityTypeMapping TypeName="TransactionModel.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Nama" ColumnName="Nama" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Access" ColumnName="Access" />
               </MappingFragment>

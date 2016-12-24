@@ -12,11 +12,10 @@ namespace ETransact
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Kategori
     {
         public int Id { get; set; }
         public string Nama { get; set; }
-        public string Password { get; set; }
-        public string Access { get; set; }
+        public Nullable<double> Harga { get; set; }
     }
 }

@@ -44,9 +44,11 @@ namespace PandawaTransact
         {
             // need to validate too :(
             MainWindow main = new MainWindow(ServerList.Text);
-            main.ShowDialog();
+            main.Show();
 
             this.Close();
         }
+
+
     }
 }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace ETransact.Controller
 {
@@ -18,20 +19,17 @@ namespace ETransact.Controller
             this.ServerName = serverName;
 
             // check if database exist
-            if(!this.IsDatabaseExist())
-            {
-                // database for transaction not found, create database
-
-            }
+            this.IsDatabaseExist();
+            this.IsTableExist();
         }
 
         // Menu CRUD
         public void AddMenu(Menu menu)
         {
-            using (var context = new TransactionEntities())
+            using (var context = new Entities())
             {
-                // might need to alter db connection string
-                var test = context.Database.Connection.ConnectionString;
+                // alter db connection string
+                context.Database.Connection.ConnectionString = context.Database.Connection.ConnectionString.Replace("ELLYNDA", this.ServerName);
                 context.Menus.Add(menu);
                 context.SaveChanges();
             }
@@ -39,8 +37,9 @@ namespace ETransact.Controller
 
         public void DeleteMenu(Menu menu)
         {
-            using (var context = new TransactionEntities())
+            using (var context = new Entities())
             {
+                context.Database.Connection.ConnectionString = context.Database.Connection.ConnectionString.Replace("ELLYNDA", this.ServerName);
                 context.Menus.Remove(menu);
                 context.SaveChanges();
             }
@@ -48,8 +47,9 @@ namespace ETransact.Controller
 
         public void EditMenu(Menu menu)
         {
-            using (var context = new TransactionEntities())
+            using (var context = new Entities())
             {
+                context.Database.Connection.ConnectionString = context.Database.Connection.ConnectionString.Replace("ELLYNDA", this.ServerName);
                 var editedMenu = context.Menus.Where(m => m.Id == menu.Id).First();
 
                 editedMenu.Nama = menu.Nama;
@@ -67,8 +67,9 @@ namespace ETransact.Controller
         {
             IList<Menu> menuList = new List<Menu>();
 
-            using (var context = new TransactionEntities())
+            using (var context = new Entities())
             {
+                context.Database.Connection.ConnectionString = context.Database.Connection.ConnectionString.Replace("ELLYNDA", this.ServerName);
                 menuList = context.Menus.ToList<Menu>();
             }
 
@@ -78,8 +79,9 @@ namespace ETransact.Controller
         // Transaksi CRUD
         public void CreateTransaksi(Transaksi transaksi)
         {
-            using (var context = new TransactionEntities())
+            using (var context = new Entities())
             {
+                context.Database.Connection.ConnectionString = context.Database.Connection.ConnectionString.Replace("ELLYNDA", this.ServerName);
                 context.Transaksis.Add(transaksi);
                 context.SaveChanges();
             }
@@ -87,8 +89,9 @@ namespace ETransact.Controller
 
         public void RemoveTransaksi(Transaksi transaksi)
         {
-            using (var context = new TransactionEntities())
+            using (var context = new Entities())
             {
+                context.Database.Connection.ConnectionString = context.Database.Connection.ConnectionString.Replace("ELLYNDA", this.ServerName);
                 context.Transaksis.Remove(transaksi);
                 context.SaveChanges();
             }
@@ -98,8 +101,9 @@ namespace ETransact.Controller
         {
             IList<Transaksi> transaksiList = new List<Transaksi>();
 
-            using (var context = new TransactionEntities())
+            using (var context = new Entities())
             {
+                context.Database.Connection.ConnectionString = context.Database.Connection.ConnectionString.Replace("ELLYNDA", this.ServerName);
                 transaksiList = context.Transaksis.ToList<Transaksi>();
             }
 
@@ -109,8 +113,9 @@ namespace ETransact.Controller
         // Metode CRUD
         public void CreateMetode(Metode metode)
         {
-            using (var context = new TransactionEntities())
+            using (var context = new Entities())
             {
+                context.Database.Connection.ConnectionString = context.Database.Connection.ConnectionString.Replace("ELLYNDA", this.ServerName);
                 context.Metodes.Add(metode);
                 context.SaveChanges();
             }
@@ -118,8 +123,9 @@ namespace ETransact.Controller
 
         public void RemoveMetode(Metode metode)
         {
-            using (var context = new TransactionEntities())
+            using (var context = new Entities())
             {
+                context.Database.Connection.ConnectionString = context.Database.Connection.ConnectionString.Replace("ELLYNDA", this.ServerName);
                 context.Metodes.Remove(metode);
                 context.SaveChanges();
             }
@@ -127,8 +133,9 @@ namespace ETransact.Controller
 
         public void EditMetode(Metode metode)
         {
-            using (var context = new TransactionEntities())
+            using (var context = new Entities())
             {
+                context.Database.Connection.ConnectionString = context.Database.Connection.ConnectionString.Replace("ELLYNDA", this.ServerName);
                 var editedMetode = context.Metodes.Where(m => m.Id == metode.Id).First();
 
                 editedMetode.Nama = metode.Nama;
@@ -142,8 +149,9 @@ namespace ETransact.Controller
         {
             IList<Metode> metodeList = new List<Metode>();
 
-            using (var context = new TransactionEntities())
+            using (var context = new Entities())
             {
+                context.Database.Connection.ConnectionString = context.Database.Connection.ConnectionString.Replace("ELLYNDA", this.ServerName);
                 metodeList = context.Metodes.ToList<Metode>();
             }
 
@@ -158,66 +166,66 @@ namespace ETransact.Controller
             builder["Data Source"] = this.ServerName;
             builder["integrated Security"] = true;
 
-            string databaseName = "PandawaTransaction";
-            string query = string.Format("SELECT database_id FROM sys.databases WHERE Name = '{0}'", databaseName);
+            string script = File.ReadAllText(@"D:\Repositories\eTransact\PandawaTransact\Queries\CreateDatabase.sql");
+
             try
             {
                 using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
                 {
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand(script, connection))
                     {
                         connection.Open();
 
                         // execute the query
-                        Object resultObj = command.ExecuteScalar();
-
-                        int databaseID = 0;
-
-                        // check the query exxecution result
-                        if (resultObj != null)
-                        {
-                            int.TryParse(resultObj.ToString(), out databaseID);
-                        }
+                        command.ExecuteNonQuery();
 
                         connection.Close();
-
-                        result = (databaseID > 0);
+                        result = true;
                     }
                 }
             }
-            catch
+            catch (Exception e)
             {
+                var test = e.Message;
                 result = false;
             }
 
             return result;
         }
 
-        private void CreateTransactDatabase()
+        private bool IsTableExist()
         {
+            bool result = false;
+
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
             builder["Data Source"] = this.ServerName;
             builder["integrated Security"] = true;
 
-            // TODO : import query create db and tables
-            string query = string.Format("");
+            string script = File.ReadAllText(@"D:\Repositories\eTransact\PandawaTransact\Queries\CreateTables.sql");
+
             try
             {
                 using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
                 {
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    using (SqlCommand command = new SqlCommand(script, connection))
                     {
                         connection.Open();
 
                         // execute the query
-                        command.ExecuteScalar();
+                        command.ExecuteNonQuery();
 
                         connection.Close();
+                        result = true;
                     }
                 }
             }
-            catch{}
-        }
+            catch (Exception e)
+            {
+                var test = e.Message;
+                result = false;
+            }
 
+            return result;
+        }
     }
 }

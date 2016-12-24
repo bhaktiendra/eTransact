@@ -13,9 +13,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ETransact.Controller;
-using Menu = ETransact.Menu;
 using System.Data.Sql;
 using System.Data;
+using System.Data.SqlClient;
+using System.IO;
 
 namespace PandawaTransact
 {
@@ -24,8 +25,11 @@ namespace PandawaTransact
     /// </summary>
     public partial class MainWindow : Window
     {
-        private TransactController controller;
+        private TransactController transactController;
         private string ServerName;
+
+        // windows
+        private MenuOptionsWindow menuOptionsWindow;
 
         public MainWindow(string serverName)
         {
@@ -33,22 +37,22 @@ namespace PandawaTransact
 
             // initialize the controller
             this.ServerName = serverName;
-            this.controller = new TransactController(this.ServerName);
+            this.transactController = new TransactController(this.ServerName);
+
+            // initialize possible windows
+            menuOptionsWindow = new MenuOptionsWindow(this.ServerName);
         }
 
-        // Logic
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void MenuOptionsButton_Click(object sender, RoutedEventArgs e)
         {
-            Menu menu = new Menu();
-
-            menu.Nama = "TestEdit";
-            menu.Harga = 2000;
-            menu.Diskon = 50;
-            menu.Deskripsi = "test desc";
-            menu.Metode = "metode";
-            menu.Kategori = "test";
-
-            controller.AddMenu(menu);
+            if (!menuOptionsWindow.IsVisible)
+            {
+                menuOptionsWindow.Show();
+            }
+            else
+            {
+                menuOptionsWindow.Focus();
+            }
         }
     }
 }

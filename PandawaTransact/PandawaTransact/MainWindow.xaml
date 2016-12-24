@@ -5,8 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PandawaTransact"
         mc:Ignorable="d"
-        Title="Pandawa Transaction" Height="350" Width="525">
+        Title="Pandawa Transaction - Menu Utama" Height="400" Width="600"
+        WindowStartupLocation="CenterScreen">
     <Grid>
-        <Button Content="Coba" Width="75" Height="25" Click="Button_Click"></Button>
+        <StackPanel Margin="10,10,10,10" HorizontalAlignment="Center">
+            <Label Content="Pandawa Pondok Kopi - Transaction" />
+            <DockPanel>
+                <Button Content="Transaksi" Width="100" Height="25" HorizontalAlignment="Left" Margin="5" />
+                <Button Name="MenuOptionsButton" Content="Atur Menu" Width="100" Height="25" HorizontalAlignment="Left" Margin="5" Click="MenuOptionsButton_Click"/>
+                <Button Content="Data" Width="100" Height="25" HorizontalAlignment="Left" Margin="5"/>
+                <Button Content="Pengaturan" Width="100" Height="25" HorizontalAlignment="Left" Margin="5"/>
+            </DockPanel>
+            <DockPanel>
+                <!-- Gambar Logo -->
+            </DockPanel>
+        </StackPanel>
+        <DockPanel VerticalAlignment="Bottom">
+            <Button Content="Bantuan" Width="100" Height="25" HorizontalAlignment="Right" Margin="5"/>
+            <Button Content="Keluar" Width="100" Height="25" HorizontalAlignment="Right" Margin="5"/>
+        </DockPanel>
     </Grid>
 </Window>

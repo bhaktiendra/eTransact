@@ -13,10 +13,10 @@ namespace ETransact
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TransactionEntities : DbContext
+    public partial class Entities : DbContext
     {
-        public TransactionEntities()
-            : base("name=TransactionEntities")
+        public Entities()
+            : base("name=Entities")
         {
         }
     
@@ -25,6 +25,7 @@ namespace ETransact
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Kategori> Kategoris { get; set; }
         public virtual DbSet<Menu> Menus { get; set; }
         public virtual DbSet<Metode> Metodes { get; set; }
         public virtual DbSet<Transaksi> Transaksis { get; set; }
