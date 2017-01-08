@@ -1,0 +1,12 @@
+﻿<Window x:Class="PandawaTransact.WaitingPopUp"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PandawaTransact"
+        mc:Ignorable="d" Height="75" Width="300" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Topmost="True" BorderThickness="0" ShowInTaskbar="False" ShowActivated="False" WindowStyle="None">
+    <Grid>
+        <Label x:Name="waitingText" Content="Please wait, populating data." HorizontalAlignment="Left" Margin="72,27,0,0" Height="26" VerticalAlignment="Top" HorizontalContentAlignment="Center"/>
+
+    </Grid>
+</Window>

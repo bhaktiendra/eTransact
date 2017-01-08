@@ -166,7 +166,7 @@ namespace ETransact.Controller
             builder["Data Source"] = this.ServerName;
             builder["integrated Security"] = true;
 
-            string script = File.ReadAllText(@"D:\Repositories\eTransact\PandawaTransact\Queries\CreateDatabase.sql");
+            string script = File.ReadAllText(@"D:\Project\eTransact-master\PandawaTransact\Queries\CreateDatabase.sql");
 
             try
             {
@@ -201,7 +201,9 @@ namespace ETransact.Controller
             builder["Data Source"] = this.ServerName;
             builder["integrated Security"] = true;
 
-            string script = File.ReadAllText(@"D:\Repositories\eTransact\PandawaTransact\Queries\CreateTables.sql");
+            string projectPath = Environment.CurrentDirectory;
+
+            string script = File.ReadAllText(projectPath + @"\Queries\CreateTables.sql");
 
             try
             {
