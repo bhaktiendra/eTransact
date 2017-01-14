@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.Sql;
 using System.Linq;
@@ -31,13 +32,47 @@ namespace PandawaTransact
             DataTable dt = SqlDataSourceEnumerator.Instance.GetDataSources();
             foreach (DataRow dr in dt.Rows)
             {
-                ServerList.Items.Add(string.Concat(dr["ServerName"], "\\", dr["InstanceName"]));
+                this.Dispatcher.Invoke(() =>
+                {
+                    ServerList.Items.Add(string.Concat(dr["ServerName"], "\\", dr["InstanceName"]));
+                });
             }
         }
 
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
         {
-            this.PopulateServers();
+            WaitingPopUp popup = new WaitingPopUp();
+            popup.Show();
+            IsEnabled = false;
+
+            BackgroundWorker bw = new BackgroundWorker();
+
+            // this allows our worker to report progress during work
+            bw.WorkerReportsProgress = true;
+
+            // what to do in the background thread
+            bw.DoWork += new DoWorkEventHandler(
+            delegate (object o, DoWorkEventArgs args)
+            {
+                PopulateServers();
+            });
+
+            // what to do when progress changed (update the progress bar for example)
+            //bw.ProgressChanged += new ProgressChangedEventHandler(
+            //delegate (object o, ProgressChangedEventArgs args)
+            //{
+            //    label1.Text = string.Format("{0}% Completed", args.ProgressPercentage);
+            //});
+
+            // what to do when worker completes its task (notify the user)
+            bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(
+            delegate (object o, RunWorkerCompletedEventArgs args)
+            {
+                popup.Close();
+                IsEnabled = true;
+            });
+
+            bw.RunWorkerAsync();
         }
 
         private void SelectButton_Click(object sender, RoutedEventArgs e)
