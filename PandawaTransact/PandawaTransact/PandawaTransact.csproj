@@ -77,7 +77,6 @@
     <Compile Include="SplashWindow.xaml.cs">
       <DependentUpon>SplashWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="System\Windows\Forms.cs" />
     <Compile Include="WaitingPopUp.xaml.cs">
       <DependentUpon>WaitingPopUp.xaml</DependentUpon>
     </Compile>
