@@ -50,6 +50,7 @@ namespace PandawaTransact
 
             if (!menuOptionsWindow.IsVisible)
             {
+                IsEnabled = false;
                 menuOptionsWindow.Show();
             }
             else
@@ -61,6 +62,7 @@ namespace PandawaTransact
         private void DestroyMenuOptionsWindow(object sender, EventArgs e)
         {
             menuOptionsWindow = null;
+            IsEnabled = true;
         }
 
         
