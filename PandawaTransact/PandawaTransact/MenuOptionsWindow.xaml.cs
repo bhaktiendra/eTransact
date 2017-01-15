@@ -22,29 +22,75 @@ namespace PandawaTransact
     /// </summary>
     public partial class MenuOptionsWindow : Window
     {
-        private string ServerName;
         private TransactController transactController;
 
-        public MenuOptionsWindow(string serverName)
+        // windows
+        MenuListWindow menuListWindow;
+
+        public MenuOptionsWindow(TransactController controller)
         {
             InitializeComponent();
 
-            this.ServerName = serverName;
-            this.transactController = new TransactController(this.ServerName);
+            this.transactController = controller;
         }
 
         private void AddMenuButton_Click(object sender, RoutedEventArgs e)
         {
-            Menu menu = new Menu();
+            if(this.IsValid())
+            {
+                Menu menu = new Menu();
 
-            menu.Nama = this.Nama.Text;
-            menu.Deskripsi = this.Deskripsi.Text;
-            menu.Harga = float.Parse(this.Harga.Text, CultureInfo.InvariantCulture.NumberFormat);
-            menu.Kategori = "Kategori";
-            menu.Metode = "Metode";
-            menu.Diskon = float.Parse(this.Diskon.Text, CultureInfo.InvariantCulture.NumberFormat);
+                menu.Nama = this.Nama.Text;
+                menu.Deskripsi = this.Deskripsi.Text;
+                menu.Harga = float.Parse(this.Harga.Text, CultureInfo.InvariantCulture.NumberFormat);
+                menu.Kategori = "Kategori";
+                menu.Metode = "Metode";
+                if (String.IsNullOrEmpty(this.Diskon.Text))
+                {
+                    this.Diskon.Text = "0";
+                }
+                menu.Diskon = float.Parse(this.Diskon.Text, CultureInfo.InvariantCulture.NumberFormat);
 
-            transactController.AddMenu(menu);
+                transactController.AddMenu(menu);
+            }
+            else
+            {
+                MessageBox.Show("Nama dan harga tidak boleh kosong!");
+            }
+        }
+
+        private bool IsValid()
+        {
+            if(String.IsNullOrEmpty(this.Nama.Text) || String.IsNullOrEmpty(this.Harga.Text))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private void ListMenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (menuListWindow == null)
+            {
+                menuListWindow = new MenuListWindow(transactController);
+                menuListWindow.Closed += DestroyMenuListWindow;
+            }
+
+            if (!menuListWindow.IsVisible)
+            {
+                menuListWindow.Show();
+            }
+            else
+            {
+                menuListWindow.Focus();
+            }
+
+        }
+
+        private void DestroyMenuListWindow(object sender, EventArgs e)
+        {
+            menuListWindow = null;
         }
     }
 }

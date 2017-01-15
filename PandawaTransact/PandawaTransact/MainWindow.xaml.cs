@@ -38,13 +38,16 @@ namespace PandawaTransact
             // initialize the controller
             this.ServerName = serverName;
             this.transactController = new TransactController(this.ServerName);
-
-            // initialize possible windows
-            menuOptionsWindow = new MenuOptionsWindow(this.ServerName);
         }
 
         private void MenuOptionsButton_Click(object sender, RoutedEventArgs e)
         {
+            if(menuOptionsWindow == null)
+            {
+                menuOptionsWindow = new MenuOptionsWindow(transactController);
+                menuOptionsWindow.Closed += DestroyMenuOptionsWindow;
+            }
+
             if (!menuOptionsWindow.IsVisible)
             {
                 menuOptionsWindow.Show();
@@ -54,5 +57,12 @@ namespace PandawaTransact
                 menuOptionsWindow.Focus();
             }
         }
+
+        private void DestroyMenuOptionsWindow(object sender, EventArgs e)
+        {
+            menuOptionsWindow = null;
+        }
+
+        
     }
 }

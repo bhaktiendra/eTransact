@@ -68,6 +68,9 @@
     <Compile Include="KategoriOptionsWindow.xaml.cs">
       <DependentUpon>KategoriOptionsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MenuListWindow.xaml.cs">
+      <DependentUpon>MenuListWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MenuOptionsWindow.xaml.cs">
       <DependentUpon>MenuOptionsWindow.xaml</DependentUpon>
     </Compile>
@@ -96,6 +99,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MenuListWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MenuOptionsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -146,6 +153,14 @@
       <Project>{af6834d0-4eb8-4e0e-98f9-a3a354e3c514}</Project>
       <Name>ETransact</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Queries\CreateDatabase.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\CreateTables.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

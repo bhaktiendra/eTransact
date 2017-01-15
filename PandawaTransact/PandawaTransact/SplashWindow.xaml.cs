@@ -66,11 +66,13 @@ namespace PandawaTransact
 
             // what to do when worker completes its task (notify the user)
             bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(
-            delegate (object o, RunWorkerCompletedEventArgs args)
-            {
-                popup.Close();
-                IsEnabled = true;
-            });
+                delegate (object o, RunWorkerCompletedEventArgs args)
+                {
+                    popup.Close();
+                    bw.Dispose();
+
+                    IsEnabled = true;
+                });
 
             bw.RunWorkerAsync();
         }

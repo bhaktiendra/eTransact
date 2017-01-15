@@ -23,5 +23,10 @@ namespace PandawaTransact
         {
             InitializeComponent();
         }
+
+        private void AddMetodeButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

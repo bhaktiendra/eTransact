@@ -167,8 +167,7 @@ namespace ETransact.Controller
             builder["integrated Security"] = true;
 
             string projectPath = Environment.CurrentDirectory;
-            // TODO
-            // copy existing sql to ouput directory, so these code saved from hard coded
+            
             string script = File.ReadAllText(projectPath + @"\Queries\CreateDatabase.sql");
 
             try
