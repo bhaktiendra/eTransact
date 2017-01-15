@@ -22,15 +22,16 @@ namespace PandawaTransact
     /// </summary>
     public partial class MenuOptionsWindow : Window
     {
-        private string ServerName;
         private TransactController transactController;
 
-        public MenuOptionsWindow(string serverName)
+        // windows
+        MenuListWindow menuListWindow;
+
+        public MenuOptionsWindow(TransactController controller)
         {
             InitializeComponent();
 
-            this.ServerName = serverName;
-            this.transactController = new TransactController(this.ServerName);
+            this.transactController = controller;
         }
 
         private void AddMenuButton_Click(object sender, RoutedEventArgs e)
@@ -44,6 +45,10 @@ namespace PandawaTransact
                 menu.Harga = float.Parse(this.Harga.Text, CultureInfo.InvariantCulture.NumberFormat);
                 menu.Kategori = "Kategori";
                 menu.Metode = "Metode";
+                if (String.IsNullOrEmpty(this.Diskon.Text))
+                {
+                    this.Diskon.Text = "0";
+                }
                 menu.Diskon = float.Parse(this.Diskon.Text, CultureInfo.InvariantCulture.NumberFormat);
 
                 transactController.AddMenu(menu);
@@ -62,6 +67,30 @@ namespace PandawaTransact
             }
 
             return true;
+        }
+
+        private void ListMenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (menuListWindow == null)
+            {
+                menuListWindow = new MenuListWindow(transactController);
+                menuListWindow.Closed += DestroyMenuListWindow;
+            }
+
+            if (!menuListWindow.IsVisible)
+            {
+                menuListWindow.Show();
+            }
+            else
+            {
+                menuListWindow.Focus();
+            }
+
+        }
+
+        private void DestroyMenuListWindow(object sender, EventArgs e)
+        {
+            menuListWindow = null;
         }
     }
 }

@@ -39,7 +39,7 @@
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Center" Grid.Column="2" Margin="5">
                     <Button Name="AddMenuButton" Content="Tambah Menu" Width="100" Height="25" Margin="5" Click="AddMenuButton_Click"/>
-                    <Button Name="ListMenuButton" Content="Daftar Menu" Width="100" Height="25" Margin="5"/>
+                    <Button Name="ListMenuButton" Content="Daftar Menu" Width="100" Height="25" Margin="5" Click="ListMenuButton_Click"/>
                     <Button Name="ExitButton" Content="Keluar" Width="100" Height="25" Margin="5,115,5,5"/>
                 </StackPanel>
             </Grid>
