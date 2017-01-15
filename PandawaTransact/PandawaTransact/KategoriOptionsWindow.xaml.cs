@@ -23,5 +23,10 @@ namespace PandawaTransact
         {
             InitializeComponent();
         }
+
+        private void AddKategoriButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

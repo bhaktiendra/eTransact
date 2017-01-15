@@ -35,16 +35,33 @@ namespace PandawaTransact
 
         private void AddMenuButton_Click(object sender, RoutedEventArgs e)
         {
-            Menu menu = new Menu();
+            if(this.IsValid())
+            {
+                Menu menu = new Menu();
 
-            menu.Nama = this.Nama.Text;
-            menu.Deskripsi = this.Deskripsi.Text;
-            menu.Harga = float.Parse(this.Harga.Text, CultureInfo.InvariantCulture.NumberFormat);
-            menu.Kategori = "Kategori";
-            menu.Metode = "Metode";
-            menu.Diskon = float.Parse(this.Diskon.Text, CultureInfo.InvariantCulture.NumberFormat);
+                menu.Nama = this.Nama.Text;
+                menu.Deskripsi = this.Deskripsi.Text;
+                menu.Harga = float.Parse(this.Harga.Text, CultureInfo.InvariantCulture.NumberFormat);
+                menu.Kategori = "Kategori";
+                menu.Metode = "Metode";
+                menu.Diskon = float.Parse(this.Diskon.Text, CultureInfo.InvariantCulture.NumberFormat);
 
-            transactController.AddMenu(menu);
+                transactController.AddMenu(menu);
+            }
+            else
+            {
+                MessageBox.Show("Nama dan harga tidak boleh kosong!");
+            }
+        }
+
+        private bool IsValid()
+        {
+            if(String.IsNullOrEmpty(this.Nama.Text) || String.IsNullOrEmpty(this.Harga.Text))
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }
