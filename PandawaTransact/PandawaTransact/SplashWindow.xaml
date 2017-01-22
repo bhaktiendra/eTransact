@@ -11,10 +11,10 @@
         <StackPanel VerticalAlignment="Center">
             <Label Content="Silakan pilih database aktif" HorizontalAlignment="Center"/>
             <DockPanel Margin="10" HorizontalAlignment="Center">
-                <ComboBox AllowDrop="True" IsEditable="True" Width="150" Height="30" Margin="5"  Name="ServerList"/>
+                <ComboBox AllowDrop="True" IsEditable="True" Width="150" Height="30" Margin="5"  Name="ServerList" SelectionChanged="ServerList_SelectionChanged"/>
                 <Button Content="Scan Database" Width="100" Height="30" Click="RefreshButton_Click" />
             </DockPanel>
-            <Button Width="150" Height="30" Content="Pilih" Click="SelectButton_Click"/>
+            <Button Width="150" Height="30" Content="Pilih" Click="SelectButton_Click" Name="ButtonSelectDatabase"/>
         </StackPanel>
     </Grid>
 </Window>

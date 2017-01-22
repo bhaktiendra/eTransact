@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PandawaTransact"
         mc:Ignorable="d"
         Title="Pandawa Transaction - Atur Menu" Height="260" Width="600"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen" Topmost="True">
     <Grid>
         <StackPanel HorizontalAlignment="Left">
             <Grid>

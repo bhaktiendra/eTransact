@@ -25,6 +25,7 @@ namespace PandawaTransact
         public SplashWindow()
         {
             InitializeComponent();
+            ButtonSelectDatabase.IsEnabled = false;
         }
 
         private void PopulateServers()
@@ -79,13 +80,22 @@ namespace PandawaTransact
 
         private void SelectButton_Click(object sender, RoutedEventArgs e)
         {
-            // need to validate too :(
             MainWindow main = new MainWindow(ServerList.Text);
             main.Show();
 
             this.Close();
         }
 
-
+        private void ServerList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(ServerList.SelectedIndex != -1)
+            {
+                ButtonSelectDatabase.IsEnabled = true;
+            }
+            else
+            {
+                ButtonSelectDatabase.IsEnabled = false;
+            }
+        }
     }
 }
