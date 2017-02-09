@@ -83,6 +83,9 @@
     <Compile Include="WaitingPopUp.xaml.cs">
       <DependentUpon>WaitingPopUp.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ExitPopup.xaml.cs">
+      <DependentUpon>ExitPopup.xaml</DependentUpon>
+    </Compile>
     <Page Include="KategoriOptionsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -116,6 +119,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WaitingPopUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ExitPopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
