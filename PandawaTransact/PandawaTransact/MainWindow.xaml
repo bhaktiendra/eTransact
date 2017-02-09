@@ -22,7 +22,7 @@
         </StackPanel>
         <DockPanel VerticalAlignment="Bottom">
             <Button Content="Bantuan" Width="100" Height="25" HorizontalAlignment="Right" Margin="5"/>
-            <Button Content="Keluar" Width="100" Height="25" HorizontalAlignment="Right" Margin="5"/>
+            <Button x:Name="ExitButton" Content="Keluar" Width="100" Height="25" HorizontalAlignment="Right" Margin="5" Click="ExitButton_Click"/>
         </DockPanel>
     </Grid>
 </Window>

@@ -65,6 +65,11 @@ namespace PandawaTransact
             IsEnabled = true;
         }
 
-        
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            // todo find a better codes
+            ExitPopup exitPopup = new ExitPopup();
+            exitPopup.Show();
+        }
     }
 }
